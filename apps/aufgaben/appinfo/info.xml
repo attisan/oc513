@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<info>
+	<id>aufgaben</id>
+	<name>Aufgaben</name>
+	<version>0.1</version>
+	<licence>AGPL</licence>
+	<author>Bart Visscher  Sebastian Doell</author>
+	<require>4.93</require>
+	<shipped>true</shipped>
+	<description>Erinnerungen Reloaded</description>
+</info>
