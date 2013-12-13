@@ -481,7 +481,7 @@ class App{
 			$valarm->setString('ACTION', $request['reminder']);
 		}
 		if($request['reminder']=='none'){
-			if($vevent -> VALARM){
+			if($vtodo -> VALARM){
 				$vtodo->setString('VALARM','');
 			}
 		}
