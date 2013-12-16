@@ -348,7 +348,7 @@ class Timeline{
 				    	$this->aTasksOutput[] = App::arrayForJSON($task['id'], $vtodo, $this->dUserTimeZone,$this->aCalendar[$task['calendarid']],$task);
 				}
 				
-			} catch(Exception $e) {
+			} catch(\Exception $e) {
 	                        \OCP\Util::writeLog('aufgaben', $e->getMessage(), \OCP\Util::ERROR);
 	                }
 	        }

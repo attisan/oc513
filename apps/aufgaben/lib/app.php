@@ -125,7 +125,7 @@ class App{
 			
 			$sharedAccessClassPermissions = \OCA\Calendar\Object::getAccessClassPermissions($oldvobject);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_UPDATE) || !($sharedAccessClassPermissions & \OCP\PERMISSION_UPDATE)) {
-				throw new Exception(
+				throw new \Exception(
 					\OCA\Calendar\App::$l10n->t(
 						'You do not have the permissions to edit this todo. Fehler'.$sharedCalendar.$id
 					)
@@ -318,7 +318,7 @@ class App{
 			$timezone = \OCA\Calendar\App::getTimezone();
 			$timezone = new \DateTimeZone($timezone);
 			new \DateTime($request['due'], $timezone);
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$errors['due'] = self::$l10n->t('Invalid date/time');
 		}
 
@@ -330,7 +330,7 @@ class App{
 				$timezone = \OCA\Calendar\App::getTimezone();
 				$timezone = new \DateTimeZone($timezone);
 				new \DateTime($request['completed'], $timezone);
-			} catch (Exception $e) {
+			} catch (\Exception $e) {
 				$errors['completed'] = self::$l10n->t('Invalid date/time');
 			}
 		}
