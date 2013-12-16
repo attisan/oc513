@@ -598,7 +598,7 @@ class App{
 			}
 			\OCP\Util::writeLog('calendar', __METHOD__.' event: '.print_r($event['summary'], true) . ' done', \OCP\Util::DEBUG);
 			return $output;
-		}catch(Exception $e) {
+		}catch(\Exception $e) {
 			$uid = 'unknown';
 			if(isset($event['uri'])){
 				$uid = $event['uri'];

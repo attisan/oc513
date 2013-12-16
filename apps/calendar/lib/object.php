@@ -198,7 +198,7 @@ class Object{
 		if ($calendar['userid'] != \OCP\User::getUser()) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $id);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_CREATE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to add events to this calendar.'
 					)
@@ -340,7 +340,7 @@ class Object{
 			
 			$sharedAccessClassPermissions = Object::getAccessClassPermissions($oldvobject);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_UPDATE) || !($sharedAccessClassPermissions & \OCP\PERMISSION_UPDATE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to edit this event. Fehler'.$sharedCalendar.$id
 					)
@@ -429,7 +429,7 @@ class Object{
 			
 			$sharedAccessClassPermissions = Object::getAccessClassPermissions($oldvobject);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_DELETE) || !($sharedAccessClassPermissions & \OCP\PERMISSION_DELETE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to delete this event.'
 					)
@@ -489,7 +489,7 @@ class Object{
 		if ($calendar['userid'] != \OCP\User::getUser()) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $calendarid);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_DELETE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to add events to this calendar.'
 					)

@@ -228,7 +228,7 @@ class Calendar{
 		if ($calendar['userid'] != \OCP\User::getUser() && !\OC_Group::inGroup(\OCP\User::getUser(), 'admin')) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $id);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_UPDATE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to update this calendar.'
 					)
@@ -261,7 +261,7 @@ class Calendar{
 		if ($calendar['userid'] != \OCP\User::getUser()) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $id);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_UPDATE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to update this calendar.'
 					)
@@ -296,7 +296,7 @@ class Calendar{
 		if ($calendar['userid'] != \OCP\User::getUser() && !\OC_Group::inGroup(\OCP\User::getUser(), 'admin')) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $id);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_DELETE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to delete this calendar.'
 					)
@@ -330,7 +330,7 @@ class Calendar{
 		if ($calendar['userid'] != \OCP\User::getUser() && !\OC_Group::inGroup(\OCP\User::getUser(), 'admin')) {
 			$sharedCalendar = \OCP\Share::getItemSharedWithBySource('calendar', $id1);
 			if (!$sharedCalendar || !($sharedCalendar['permissions'] & \OCP\PERMISSION_UPDATE)) {
-				throw new Exception(
+				throw new \Exception(
 					App::$l10n->t(
 						'You do not have the permissions to add to this calendar.'
 					)

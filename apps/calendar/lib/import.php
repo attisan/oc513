@@ -97,7 +97,7 @@ class Import{
 		}
 		try{
 			$this->calobject = \OC_VObject::parse($this->ical);
-		}catch(Exception $e) {
+		}catch(\Exception $e) {
 			//MISSING: write some log
 			$this->error = true;
 			return false;
@@ -305,15 +305,23 @@ class Import{
 	 */
 	private function isDuplicate($insertid) {
 		$newobject = Object::find($insertid);
-		$stmt = \OCP\DB::prepare('SELECT COUNT(*) AS `count` FROM `*PREFIX*clndr_objects`
-								 INNER JOIN `*PREFIX*clndr_calendars` ON `calendarid`=`*PREFIX*clndr_calendars`.`id`
-								 WHERE `objecttype`=? AND `startdate`=? AND `enddate`=? AND `repeating`=? AND `summary`=? AND `calendardata`=? AND `userid` = ?');
-		$result = $stmt->execute(array($newobject['objecttype'],$newobject['startdate'],$newobject['enddate'],$newobject['repeating'],$newobject['summary'],$newobject['calendardata'], $this->userid));
+		$endDate=$newobject['enddate'];
+		if(!$newobject['enddate']) {
+			$endDate=null;
+		}
+		
+		$stmt = \OCP\DB::prepare('SELECT COUNT(*) AS `COUNTING` FROM `*PREFIX*clndr_objects` `CO`
+								 INNER JOIN `*PREFIX*clndr_calendars` ON `CO`.`calendarid`=`*PREFIX*clndr_calendars`.`id`
+								 WHERE `CO`.`objecttype`=? AND `CO`.`startdate`=? AND `CO`.`enddate`=? AND `CO`.`repeating`=? AND `CO`.`summary`=? AND `CO`.`calendardata`=? AND `*PREFIX*clndr_calendars`.`userid` = ?');
+		$result = $stmt->execute(array($newobject['objecttype'],$newobject['startdate'],$endDate,$newobject['repeating'],$newobject['summary'],$newobject['calendardata'], $this->userid));
 		$result = $result->fetchRow();
-		if($result['count'] >= 2) {
+		
+		
+		if($result['COUNTING'] >= 2) {
 			return true;
 		}
 		return false;
+		
 	}
 
 	/*

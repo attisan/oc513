@@ -11,6 +11,9 @@ OCP\App::addNavigationEntry( array(
   'icon' => OCP\Util::imagePath( 'calendar', 'calendar.svg' ),
   'name' => $l->t('Calendar')));
   
+OCP\Util::addscript('calendar','loader');
+OCP\Util::addStyle('3rdparty/miniColors', 'jquery.miniColors');
+OCP\Util::addscript('3rdparty/miniColors', 'jquery.miniColors.min');
 
 OC_Search::registerProvider('OCA\Calendar\SearchProvider');
 OCP\Util::addscript('calendar','alarm');

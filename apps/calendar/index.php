@@ -34,11 +34,10 @@ if(OCP\Config::getUserValue(OCP\USER::getUser(), 'calendar', 'currentview', 'mon
 OCP\Util::addscript('calendar/3rdparty/fullcalendar', 'fullcalendar');
 OCP\Util::addStyle('calendar/3rdparty/fullcalendar', 'fullcalendar');
 OCP\Util::addscript('calendar','timepicker');
-OCP\Util::addscript('calendar','loader');
+
 OCP\Util::addscript("3rdparty", "chosen/chosen.jquery.min");
 OCP\Util::addStyle("3rdparty", "chosen/chosen");
-OCP\Util::addStyle('3rdparty/miniColors', 'jquery.miniColors');
-OCP\Util::addscript('3rdparty/miniColors', 'jquery.miniColors.min');
+
 
 if(OCP\Config::getUserValue(OCP\USER::getUser(), "calendar", "timezone") == null || OCP\Config::getUserValue(OCP\USER::getUser(), 'calendar', 'timezonedetection') == 'true') {
 	OCP\Util::addscript('calendar', 'geo');
