@@ -1234,17 +1234,24 @@ Calendar={
 			init:function(){
 				if (typeof window.FileReader === 'undefined') {
 					console.log('The drop-import feature is not supported in your browser :(');
+					
 					return false;
 				}
+				
 				droparea = document.getElementById('fullcalendar');
+				droparea.ondragover = function () { return false; };
+                droparea.ondragend = function () {  return false; };
 				droparea.ondrop = function(e){
 					e.preventDefault();
+					e.stopPropagation(); 
 					Calendar.UI.Drop.drop(e);
 				}
 				console.log('Drop initialized successfully');
+				
 			},
 			drop:function(e){
 				var files = e.dataTransfer.files;
+				
 				for(var i = 0;i < files.length;i++){
 					var file = files[i];
 					var reader = new FileReader();
@@ -1256,6 +1263,7 @@ Calendar={
 				}
 			},
 			doImport:function(data){
+				
 				$.post(OC.filePath('calendar', 'ajax/import', 'dropimport.php'), {'data':data},function(result) {
 					if(result.status == 'success'){
 						$('#fullcalendar').fullCalendar('addEventSource', result.eventSource);
@@ -1548,6 +1556,7 @@ $(document).ready(function(){
 		weekNumbers:true,
 		weekMode:'variable',
 		firstHour:8,
+		
 		lazyFetching: false,
 		weekends:bWeekends,
 		timeFormat: {
